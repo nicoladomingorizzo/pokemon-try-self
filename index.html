@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokéDeck Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <div class="main-wrapper">
+        <h1 class="pokemon-title">PokéDeck Tracker</h1>
+
+        <div class="container main-content">
+            <div class="left-panel">
+                <div class="pokemon-card">
+                    <h2 class="card-title">Aggiungi Mazzo</h2>
+                    <form id="deckForm">
+                        <div class="mb-3">
+                            <label for="deckNameInput" class="form-label">Nome del Mazzo:</label>
+                            <input type="text" class="form-control" id="deckNameInput" placeholder="Es: Charizard ex"
+                                list="existingDecks" required>
+                            <datalist id="existingDecks"></datalist>
+                        </div>
+                        <div class="mb-3">
+                            <label for="matchesPlayedInput" class="form-label">Partite Giocate:</label>
+                            <input type="number" class="form-control" id="matchesPlayedInput" value="0" min="0"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="matchesWonInput" class="form-label">Partite Vinte:</label>
+                            <input type="number" class="form-control" id="matchesWonInput" value="0" min="0" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="deckTypeSelect" class="form-label">Tipo di Mazzo:</label>
+                            <select class="form-select" id="deckTypeSelect" required>
+                                <option value="">Seleziona un tipo</option>
+                                <option value="Standard">Standard</option>
+                                <option value="Expanded">Expanded</option>
+                                <option value="Legacy">Legacy</option>
+                                <option value="Unlimited">Unlimited</option>
+                                <option value="Other">Altro</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Energia Predominante:</label>
+                            <div class="form-check-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="energyType" id="fireEnergy"
+                                        value="Fuoco" required>
+                                    <label class="form-check-label" for="fireEnergy">Fuoco</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="energyType" id="waterEnergy"
+                                        value="Acqua">
+                                    <label class="form-check-label" for="waterEnergy">Acqua</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="energyType" id="grassEnergy"
+                                        value="Erba">
+                                    <label class="form-check-label" for="grassEnergy">Erba</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="energyType" id="lightningEnergy"
+                                        value="Lampo">
+                                    <label class="form-check-label" for="lightningEnergy">Lampo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="energyType" id="psychicEnergy"
+                                        value="Psico">
+                                    <label class="form-check-label" for="psychicEnergy">Psico</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="energyType" id="fightingEnergy"
+                                        value="Lotta">
+                                    <label class="form-check-label" for="fightingEnergy">Lotta</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="energyType" id="darkEnergy"
+                                        value="Buio">
+                                    <label class="form-check-label" for="darkEnergy">Buio</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="energyType" id="metalEnergy"
+                                        value="Metallo">
+                                    <label class="form-check-label" for="metalEnergy">Metallo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="energyType" id="dragonEnergy"
+                                        value="Drago">
+                                    <label class="form-check-label" for="dragonEnergy">Drago</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="energyType" id="fairyEnergy"
+                                        value="Folletto">
+                                    <label class="form-check-label" for="fairyEnergy">Folletto</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="energyType" id="colorlessEnergy"
+                                        value="Incolore">
+                                    <label class="form-check-label" for="colorlessEnergy">Incolore</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="pokemon-button">Aggiungi/Aggiorna Mazzo</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="pokemon-card">
+                    <h2 class="card-title">Statistiche Generali</h2>
+                    <div class="info-display">
+                        <p>Mazzi Totali: <span id="totalDecks">0</span></p>
+                        <p>Partite Totali Giocate: <span id="totalMatchesPlayed">0</span></p>
+                        <p>Partite Totali Vinte: <span id="totalMatchesWon">0</span></p>
+                        <p>Win Rate Generale: <span id="overallWinRate">0%</span></p>
+                    </div>
+                </div>
+
+                <div class="pokemon-card mt-4">
+                    <h2 class="card-title">Statistiche Brevi Mazzo Selezionato</h2>
+                    <div id="briefDeckStats" class="brief-deck-stat-card">
+                        <p>Seleziona un mazzo dalla lista a lato per vedere le sue statistiche.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <aside class="deck-list-aside">
+            <h3 class="aside-title">I Tuoi Mazzi</h3>
+            <ul id="deckList" class="list-group">
+                <li class="list-group-item no-decks-aside">Nessun mazzo aggiunto ancora.</li>
+            </ul>
+        </aside>
+    </div>
+
+    <div class="modal fade" id="deckDetailsModal" tabindex="-1" aria-labelledby="deckDetailsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content pokemon-modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deckDetailsModalLabel">Dettagli Mazzo: <span id="modalDeckName"></span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Partite Giocate:</strong> <span id="modalMatchesPlayed"></span></p>
+                    <p><strong>Partite Vinte:</strong> <span id="modalMatchesWon"></span></p>
+                    <p><strong>Tipo di Mazzo:</strong> <span id="modalDeckType"></span></p>
+                    <p><strong>Energia Predominante:</strong> <span id="modalEnergyType"></span></p>
+                    <p class="win-rate">Win Rate: <span id="modalWinRate"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="pokemon-modal-nav-button" id="prevDeckButton">
+                        <i class="fas fa-arrow-left"></i> Prec. Mazzo
+                    </button>
+                    <button type="button" class="pokemon-modal-close-button" data-bs-dismiss="modal">Chiudi</button>
+                    <button type="button" class="pokemon-modal-nav-button" id="nextDeckButton">
+                        Succ. Mazzo <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

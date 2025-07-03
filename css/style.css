@@ -4,9 +4,6 @@ body {
     /* Manteniamo un font leggibile e moderno */
     background: linear-gradient(to bottom, #d60000 50%, #ffffff 50%);
     /* Sfondo rosso e bianco Poké Ball */
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
     margin: 0;
     background-repeat: no-repeat;
@@ -30,13 +27,14 @@ body {
     width: 100%;
     /* Occupa tutta la larghezza disponibile */
     position: relative;
+    gap: 90px;
 }
 
 /* Stile per il titolo principale */
 .pokemon-title {
     text-align: center;
     color: #000;
-    margin-bottom: 50px;
+    margin: 50px auto;
     text-transform: uppercase;
     font-size: 2.8em;
     letter-spacing: 3px;
@@ -50,6 +48,7 @@ body {
     position: relative;
     z-index: 5;
     transform: translateY(-25px);
+    max-width: 50rem;
 }
 
 /* Contenitore principale per il form e le stats */
@@ -59,7 +58,7 @@ body {
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     width: 100%;
-    max-width: 850px;
+    max-width: 1920px;
     border: 5px solid #000;
     position: relative;
     overflow: hidden;
@@ -296,7 +295,7 @@ input[type="radio"] {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     max-width: 380px;
     width: 100%;
-    margin-top: 50px;
+    margin: 0 50px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -534,12 +533,17 @@ input[type="radio"] {
     .main-wrapper {
         flex-direction: row;
         align-items: flex-start;
-        gap: 40px;
+        gap: 10px;
     }
 
     .container.main-content {
-        flex: 1;
+        display: block;
         margin-bottom: 0;
+    }
+
+    .left-panel,
+    .right-panel {
+        flex-wrap: wrap;
     }
 
     .deck-list-aside {
@@ -548,7 +552,7 @@ input[type="radio"] {
 }
 
 /* Regolazioni per schermi più piccoli */
-@media (max-width: 767px) {
+@media (max-width: 991px) and (min-width: 768px) {
     body {
         padding: 15px;
         /* Riduci il padding generale su mobile */
